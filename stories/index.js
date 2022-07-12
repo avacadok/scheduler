@@ -15,6 +15,7 @@ storiesOf("Button", module)
   .add("Confirm", () => <Button confirm>Confirm</Button>)
   .add("Danger", () => <Button danger>Cancel</Button>)
   .add("Clickable", () => (
+    //action(...), display the data received by event handlers
     <Button onClick={action("button-clicked")}>Clickable</Button>
   ))
   .add("Disabled", () => (
