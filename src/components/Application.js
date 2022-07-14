@@ -60,6 +60,11 @@ export default function Application(props) {
     return(
       <Appointment
       key={appointment.id} 
+      // {...appointment} is same thing as below by writing
+      // key={appointment.id} 
+      // id={appointment.id}
+      // time={appointment.time}
+      // interview={appointment.interview}
       {...appointment} />
     )
   }); 
