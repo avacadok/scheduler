@@ -3,7 +3,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -14,6 +14,7 @@ export default function Application(props) {
   });
   const setDay = day => setState({ ...state, day });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
   //dailyAppointments will log an empty [] at first then return info on the second log when the state gets update
   useEffect(() => {
     Promise.all([
@@ -34,7 +35,7 @@ export default function Application(props) {
       {...appointment} 
       key={appointment.id}
       interview={interview}
-      interviewers={state.interviewers}/>
+      interviewers={dailyInterviewers}/>
     )
   }); 
 

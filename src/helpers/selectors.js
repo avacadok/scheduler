@@ -20,3 +20,12 @@ export const getInterview = (state, interview) => {
     interviewer: state.interviewers[interview.interviewer]
   }
 }
+
+export const getInterviewersForDay = (state, day) => {
+
+  const filteredDay = state.days.find(selectedDay => selectedDay.name === day);
+  if(!filteredDay){
+    return []
+  }
+  return filteredDay.interviewers.map((interviewerId) => state.interviewers[interviewerId]);
+}
