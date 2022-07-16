@@ -33,7 +33,8 @@ export default function Application(props) {
       <Appointment
       {...appointment} 
       key={appointment.id}
-      interview={interview}/>
+      interview={interview}
+      interviewers={state.interviewers}/>
     )
   }); 
 
