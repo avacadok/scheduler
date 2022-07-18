@@ -16,9 +16,23 @@ export default function Application(props) {
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   //dailyAppointments will log an empty [] at first then return info on the second log when the state gets update
-
+  
   function bookInterview(id, interview) {
-    console.log('bookIntervie',id, interview);
+    console.log('bookInterview',id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({
+      ...state,
+      appointments
+    });
   }
 
   useEffect(() => {
@@ -34,6 +48,7 @@ export default function Application(props) {
 
   const appointmentElement = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+    console.log("interview---", interview);
     return(
       <Appointment
       {...appointment} 
