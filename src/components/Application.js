@@ -17,6 +17,17 @@ export default function Application(props) {
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   //dailyAppointments will log an empty [] at first then return info on the second log when the state gets update
   
+  useEffect(() => {
+    Promise.all([
+      axios.get(`/api/days`),
+      axios.get(`/api/appointments`),
+      axios.get(`/api/interviewers`)
+    ])
+    .then((all) => {
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
+    } )
+  }, [])
+  
   function bookInterview(id, interview) {
     console.log('bookInterview',id, interview);
     const appointment = {
@@ -29,22 +40,20 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    setState({
-      ...state,
-      appointments
-    });
-  }
+    // setState({
+    //   ...state,
+    //   appointments
+    // });
 
-  useEffect(() => {
-    Promise.all([
-      axios.get(`/api/days`),
-      axios.get(`/api/appointments`),
-      axios.get(`/api/interviewers`)
-    ])
-    .then((all) => {
-      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
-    } )
-  }, [])
+    return axios.put(`/api/appointments/${id}`, {interview})
+    .then((response) => {
+      setState(state => ({...state, appointments}))
+      console.log("response", response)
+    })
+    .catch((error) => {
+      console.log("error",error)
+    })
+  }
 
   const appointmentElement = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
