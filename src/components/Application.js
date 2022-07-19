@@ -41,31 +41,25 @@ export default function Application(props) {
     };
 
     return axios.put(`/api/appointments/${id}`, {interview})
-    .then((response) => {
+    .then(() => {
       setState(state => ({...state, appointments}))
-      console.log("response", response)
-    })
-    .catch((error) => {
-      console.log("error",error)
     })
   }
 
-  function cancelInterview(id, interview) {
+  function cancelInterview(id) {
     
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    console.log("cancel appointment", appointment);
     return axios.delete(`/api/appointments/${id}`)
-    .then(state => ({...state, appointments}))
-    .catch((error) => {
-      console.log("error",error)
+    .then(() => {
+      const appointment = {
+        ...state.appointments[id],
+        interview: null
+      };
+  
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
+      setState(state => ({...state, appointments}))
     })
     
   }
