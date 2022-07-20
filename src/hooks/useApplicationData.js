@@ -55,18 +55,28 @@ export const useApplicationData = () => {
       };
       const days = updateSpots(state, appointments);
       setState(state => ({...state, days, appointments}))
-      console.log(updateSpots(state, appointments))
+      console.log("update",updateSpots(state, appointments))
     }) 
   }
 
   function updateSpots(state, appointments){
+
     const currentDay = state.days.find((day) => day.name === state.day);
+    console.log("currentDay", currentDay)
+    console.log("info",state, appointments)
 
     const appointmentIds = currentDay.appointments;
+    console.log("apptID",appointmentIds)
+
     const spots = appointmentIds.filter((id) => !appointments[id].interview).length;
+    
     const currentDayIndex = state.days.findIndex((day) => day.name === state.day);
+
     const updateDayObj = {...currentDay, spots};
+    console.log("updateObj", updateDayObj)
+
     const updateDayArr = [...state.days];
+
     updateDayArr[currentDayIndex] = updateDayObj;
 
     return updateDayArr;
