@@ -7,9 +7,9 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
-  const save = function () {
-    props.onSave(student, interviewer);
-  }
+  // const save = function () {
+  //   props.onSave(student, interviewer);
+  // }
   const reset = function () {
     setStudent("")
     setInterviewer(null)
@@ -29,7 +29,7 @@ export default function Form(props) {
       setError("Please select an interviewer");
       return;
     }
-
+    setError("");
     props.onSave(student, interviewer);
   }
 
@@ -45,15 +45,10 @@ export default function Form(props) {
             value={student}
             onChange={(event) => setStudent(event.target.value)}
             data-testid="student-name-input"
-          /*
-            This must be a controlled component
-            your code goes here
-          */
           />
           <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList
-          /* your code goes here */
           interviewers={props.interviewers}
           value={interviewer}
           onChange={setInterviewer}
