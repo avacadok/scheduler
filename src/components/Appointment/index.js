@@ -33,21 +33,21 @@ export default function Appointment(props) {
     transition(SAVING, true)
 
     props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW))
-    .catch(error => {
-      transition(ERROR_SAVE, true)
-    } );
+      .then(() => transition(SHOW))
+      .catch(error => {
+        transition(ERROR_SAVE, true)
+      });
   };
 
   function deleteInterview() {
     transition(DELETE, true);
 
     props.cancelInterview(props.id)
-    .then(() => transition(EMPTY))
-    .catch(error => transition(ERROR_DELETE, true));
+      .then(() => transition(EMPTY))
+      .catch(error => transition(ERROR_DELETE, true));
   }
 
-  return(
+  return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
@@ -61,25 +61,25 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && <Form interviewers={props.interviewers}
-      onCancel={back}
-      onSave={save}
-      />}
-      {mode === SAVING && <Status message="Saving"/>}
-      {mode === DELETE && <Status message="Deleting"/>}
-      {mode === CONFIRM && <Confirm message="Are you sure you would like to delete this appointment?"
-      onCancel={back}
-      onConfirm={deleteInterview} />}
-      {mode === EDIT && 
-      <Form 
-        //can use the react dev tool to look into the info that we want
-        student={props.interview.student}
-        interviewers={props.interviewers}
-        interviewer={props.interview.interviewer.id}
-        onSave={save}
         onCancel={back}
+        onSave={save}
       />}
-      {mode === ERROR_SAVE && <Error onClose={back} message="Sorry, we have error saving"/>}
-      {mode === ERROR_DELETE && <Error onClose={back} message="Sorry, we have error deleting"/>}
+      {mode === SAVING && <Status message="Saving" />}
+      {mode === DELETE && <Status message="Deleting" />}
+      {mode === CONFIRM && <Confirm message="Are you sure you would like to delete this appointment?"
+        onCancel={back}
+        onConfirm={deleteInterview} />}
+      {mode === EDIT &&
+        <Form
+          //can use the react dev tool to look into the info that we want
+          student={props.interview.student}
+          interviewers={props.interviewers}
+          interviewer={props.interview.interviewer.id}
+          onSave={save}
+          onCancel={back}
+        />}
+      {mode === ERROR_SAVE && <Error onClose={back} message="Sorry, we have error saving" />}
+      {mode === ERROR_DELETE && <Error onClose={back} message="Sorry, we have error deleting" />}
     </article>
   );
 }
