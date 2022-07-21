@@ -1,5 +1,5 @@
 import React from "react";
-//why we dont use onClick = {() => onAdd} here
+
 export default function Empty (props) {
   const { onAdd } = props;
   return (
