@@ -4,7 +4,7 @@ Interview Scheduler is designed to provide a better user experience when it come
 ## Final Product 
 
 ### Main Page Presentation
-!["screenshot description"]()
+!["screenshot description"](https://github.com/avacadok/scheduler/blob/master/docs/Main-Page.png)
 ### Create An Appointment
 !["screenshot description"]()
 ### Delete Confirmation
