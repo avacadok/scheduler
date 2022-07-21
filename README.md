@@ -6,11 +6,11 @@ Interview Scheduler is designed to provide a better user experience when it come
 ### Main Page Presentation
 !["screenshot description"](https://github.com/avacadok/scheduler/blob/master/docs/main.png)
 ### Create An Appointment
-!["screenshot description"]()
+!["screenshot description"](https://github.com/avacadok/scheduler/blob/master/docs/book-appt.png)
 ### Delete Confirmation
-!["screenshot description"]()
+!["screenshot description"](https://github.com/avacadok/scheduler/blob/master/docs/cancel.png)
 ### Error Message
-!["screenshot description"]()
+!["screenshot description"](https://github.com/avacadok/scheduler/blob/master/docs/error.png)
 
 ## Setup
 
