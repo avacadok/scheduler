@@ -1,4 +1,16 @@
 # Interview Scheduler
+Interview Scheduler is designed to provide a better user experience when it comes to booking, editing and cancelling an interview 🗓 </br>
+
+## Final Product 
+
+### Main Page Presentation
+!["screenshot description"]()
+### Create An Appointment
+!["screenshot description"]()
+### Delete Confirmation
+!["screenshot description"]()
+### Error Message
+!["screenshot description"]()
 
 ## Setup
 
@@ -9,6 +21,11 @@ Install dependencies with `npm install`.
 ```sh
 npm start
 ```
+## Dependencies 
+  - React
+  - Axios
+  - Classnames
+
 
 ## Running Jest Test Framework
 
