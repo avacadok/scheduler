@@ -57,20 +57,31 @@ export const useApplicationData = () => {
   }
 
   function updateSpots(state, appointments) {
-
+    //return 1 when day = Tuesday
+    const currentDayIndex = state.days.findIndex((day) => day.name === state.day);
+    //return the whole Tuesday object
     const currentDay = state.days.find((day) => day.name === state.day);
-
+    //getting an array [4, 5] of appointment ids
     const appointmentIds = currentDay.appointments;
-
+    // [4], spots = 1
     const spots = appointmentIds.filter((id) => !appointments[id].interview).length;
 
-    const currentDayIndex = state.days.findIndex((day) => day.name === state.day);
+    /* {
+        currntDay: {
+          id: 2,
+          name: "Tuesday",
+          appointments: [4, 5],
+          interviewers: [4, 5]
+        },
 
-    const updateDayObj = { ...currentDay, spots };
-
+        spots: 1
+    }
+    */
+    const updateCurrentDayObj = { ...currentDay, spots };
+    //return a copy of state.days
     const updateDayArr = [...state.days];
-
-    updateDayArr[currentDayIndex] = updateDayObj;
+    //replacing the Tuesday obj with the new Tuesday obj inside the state
+    updateDayArr[currentDayIndex] = updateCurrentDayObj;
 
     return updateDayArr;
   }
